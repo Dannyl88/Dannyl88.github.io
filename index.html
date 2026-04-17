@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniel E Lopez — QA Engineer Portfolio</title>
+  <meta name="description" content="QA Engineer portfolio — web, mobile, API testing and automation projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --surface-2: #f4f4f1;
+      --border: rgba(0,0,0,0.10);
+      --border-strong: rgba(0,0,0,0.20);
+      --text: #1a1a18;
+      --text-2: #5a5a54;
+      --text-3: #9a9a90;
+      --accent: #1a1a18;
+      --tag-bg: #f0f0ec;
+      --tag-text: #5a5a54;
+      --web: #185FA5;
+      --api: #0F6E56;
+      --mobile: #3C3489;
+      --auto: #993C1D;
+      --radius: 10px;
+      --radius-pill: 100px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111110;
+        --surface: #1c1c1a;
+        --surface-2: #242422;
+        --border: rgba(255,255,255,0.09);
+        --border-strong: rgba(255,255,255,0.18);
+        --text: #f0f0ec;
+        --text-2: #a0a09a;
+        --text-3: #60605a;
+        --accent: #f0f0ec;
+        --tag-bg: #2a2a28;
+        --tag-text: #a0a09a;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      padding: 1rem 0;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .nav-name {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .nav-right a {
+      font-size: 13px;
+      color: var(--text-2);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-right a:hover { color: var(--text); }
+    .nav-resume {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid var(--border-strong);
+      color: var(--text) !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s;
+    }
+    .nav-resume:hover { background: var(--surface-2) !important; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-2);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
+    .pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid var(--border-strong);
+      color: var(--text-2);
+    }
+    .hero-cta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.82; }
+    .btn-secondary {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 9px 20px;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid var(--border-strong);
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .btn-secondary:hover { background: var(--surface-2); }
+
+    /* ── Projects ── */
+    .projects { padding: 3.5rem 0; }
+    .section-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid var(--border);
+      background: transparent;
+      color: var(--text-2);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.15s;
+    }
+    .filter:hover { border-color: var(--border-strong); color: var(--text); }
+    .filter.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .card:hover { border-color: var(--border-strong); transform: translateY(-1px); }
+    .card-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+    .card-type.web   { color: var(--web); }
+    .card-type.api    { color: var(--api); }
+    .card-type.mobile { color: var(--mobile); }
+    .card-type.auto   { color: var(--auto); }
+    .card h3 { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.4; }
+    .card p  { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 1rem; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; }
+    .card-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+    }
+    .card-link {
+      font-size: 12px;
+      color: var(--text-3);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--border);
+      padding-bottom: 1px;
+      align-self: flex-start;
+      transition: color 0.15s;
+    }
+    .card-link:hover { color: var(--text); }
+
+    /* ── Divider ── */
+    hr { border: none; border-top: 0.5px solid var(--border); margin: 0; }
+
+    /* ── About ── */
+    .about {
+      padding: 3.5rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .about-block h2 {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .about-block p { font-size: 14px; color: var(--text-2); line-height: 1.75; }
+    .about-block ul { padding-left: 1rem; }
+    .about-block li { font-size: 14px; color: var(--text-2); line-height: 1.75; margin-bottom: 2px; }
+
+    /* ── Contact ── */
+    .contact { padding: 3rem 0; }
+    .contact h2 {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .contact-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .contact-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 0.5px solid var(--border-strong);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.15s;
+    }
+    .contact-btn:hover { background: var(--surface-2); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 0;
+      border-top: 0.5px solid var(--border);
+      text-align: center;
+    }
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Fade-in animation ── */
+    .fade-in { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      .about { grid-template-columns: 1fr; gap: 2rem; }
+      .hero { padding: 3rem 0 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="wrap nav-inner">
+      <span class="nav-name">Your Name &middot; QA Engineer</span>
+      <div class="nav-right">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-resume" href="YOUR_RESUME_LINK_HERE" target="_blank" rel="noopener">
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 1v9M4.5 7l3.5 3.5L11.5 7M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Resume
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-eyebrow fade-in">Quality Assurance &middot; TripleTen Alumni</p>
+      <h1 class="fade-in" style="transition-delay:0.07s">I break things<br>so your users don't.</h1>
+      <p class="hero-sub fade-in" style="transition-delay:0.14s">QA Engineer with hands-on experience in web, mobile, and API testing. Skilled in test automation, manual testing, and defect lifecycle management using industry-standard tools.</p>
+      <div class="pills fade-in" style="transition-delay:0.18s">
+        <span class="pill">Selenium</span>
+        <span class="pill">Postman</span>
+        <span class="pill">JIRA</span>
+        <span class="pill">Python</span>
+        <span class="pill">REST APIs</span>
+        <span class="pill">Chrome DevTools</span>
+        <span class="pill">Android Studio</span>
+        <span class="pill">PyTest</span>
+      </div>
+      <div class="hero-cta fade-in" style="transition-delay:0.22s">
+        <a class="btn-primary" href="YOUR_RESUME_LINK_HERE" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 1v9M4.5 7l3.5 3.5L11.5 7M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Download resume
+        </a>
+        <a class="btn-secondary" href="#projects">View projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="wrap">
+      <div class="section-row">
+        <span class="section-label">Projects</span>
+        <div class="filters">
+          <button class="filter active" onclick="filterCards('all',this)">All</button>
+          <button class="filter" onclick="filterCards('web',this)">Web</button>
+          <button class="filter" onclick="filterCards('api',this)">API</button>
+          <button class="filter" onclick="filterCards('mobile',this)">Mobile</button>
+          <button class="filter" onclick="filterCards('auto',this)">Automation</button>
+        </div>
+      </div>
+      <div class="grid" id="grid">
+
+        <div class="card fade-in" data-type="web">
+          <p class="card-type web">Web testing</p>
+          <h3>Urban Routes — Web App Test Suite</h3>
+          <p>Functional and regression testing of a ride-sharing web app. Covers core user flows including booking, route selection, and payment validation.</p>
+          <div class="card-tags">
+            <span class="card-tag">Test cases</span>
+            <span class="card-tag">Bug reports</span>
+            <span class="card-tag">JIRA</span>
+          </div>
+          <a class="card-link" href="YOUR_LINK_HERE" target="_blank" rel="noopener">View artifacts →</a>
+        </div>
+
+        <div class="card fade-in" data-type="api" style="transition-delay:0.05s">
+          <p class="card-type api">API testing</p>
+          <h3>Urban Grocers — API Validation</h3>
+          <p>End-to-end API testing of a grocery delivery backend. Validated CRUD operations, status codes, response schemas, and edge case handling.</p>
+          <div class="card-tags">
+            <span class="card-tag">Postman</span>
+            <span class="card-tag">REST</span>
+            <span class="card-tag">JSON schema</span>
+          </div>
+          <a class="card-link" href="YOUR_LINK_HERE" target="_blank" rel="noopener">View collection →</a>
+        </div>
+
+        <div class="card fade-in" data-type="mobile" style="transition-delay:0.10s">
+          <p class="card-type mobile">Mobile testing</p>
+          <h3>Urban Scooter — Android App QA</h3>
+          <p>Manual mobile testing on Android using emulator and physical device. Covered UI consistency, navigation, and offline behavior scenarios.</p>
+          <div class="card-tags">
+            <span class="card-tag">Android Studio</span>
+            <span class="card-tag">Charles Proxy</span>
+            <span class="card-tag">Checklists</span>
+          </div>
+          <a class="card-link" href="YOUR_LINK_HERE" target="_blank" rel="noopener">View report →</a>
+        </div>
+
+        <div class="card fade-in" data-type="auto" style="transition-delay:0.15s">
+          <p class="card-type auto">Automation</p>
+          <h3>Urban Routes — Selenium Test Automation</h3>
+          <p>Automated regression suite for critical booking flows using Selenium WebDriver and Python. Includes page object model design pattern implementation.</p>
+          <div class="card-tags">
+            <span class="card-tag">Selenium</span>
+            <span class="card-tag">Python</span>
+            <span class="card-tag">PyTest</span>
+            <span class="card-tag">POM</span>
+          </div>
+          <a class="card-link" href="YOUR_LINK_HERE" target="_blank" rel="noopener">View repo →</a>
+        </div>
+
+        <div class="card fade-in" data-type="web" style="transition-delay:0.20s">
+          <p class="card-type web">Web testing</p>
+          <h3>Urban Lunch — Requirements Analysis</h3>
+          <p>Thorough requirements review and equivalence class / boundary value analysis for a food delivery platform. Produced structured test documentation.</p>
+          <div class="card-tags">
+            <span class="card-tag">Test design</span>
+            <span class="card-tag">BVA</span>
+            <span class="card-tag">Mind maps</span>
+          </div>
+          <a class="card-link" href="YOUR_LINK_HERE" target="_blank" rel="noopener">View test plan →</a>
+        </div>
+
+        <div class="card fade-in" data-type="api" style="transition-delay:0.25s">
+          <p class="card-type api">API testing</p>
+          <h3>Urban Grocers — Backend Auth Testing</h3>
+          <p>Focused testing of authentication endpoints — registration, login, token validation, and negative flows including invalid credentials and rate limits.</p>
+          <div class="card-tags">
+            <span class="card-tag">Postman</span>
+            <span class="card-tag">Auth flows</span>
+            <span class="card-tag">Negative testing</span>
+          </div>
+          <a class="card-link" href="YOUR_LINK_HERE" target="_blank" rel="noopener">View collection →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-block fade-in">
+      <h2>About</h2>
+      <p>QA Engineer trained at TripleTen Bootcamp, with a methodical approach to quality built through hands-on project work across web, mobile, and API platforms. Experienced in both manual and automated testing strategies.</p>
+    </div>
+    <div class="about-block fade-in" style="transition-delay:0.08s">
+      <h2>Core skills</h2>
+      <ul>
+        <li>Test case design &amp; execution</li>
+        <li>Bug reporting &amp; defect lifecycle</li>
+        <li>REST API testing with Postman</li>
+        <li>Selenium automation with Python</li>
+        <li>Mobile testing (Android)</li>
+        <li>Agile / JIRA workflows</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <div class="contact-row">
+        <a class="contact-btn" href="mailto:your@email.com">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M1 5l7 5 7-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          your@email.com
+        </a>
+        <a class="contact-btn" href="https://github.com/YOUR_USERNAME" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          GitHub
+        </a>
+        <a class="contact-btn" href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a class="contact-btn" href="YOUR_RESUME_LINK_HERE" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 1v9M4.5 7l3.5 3.5L11.5 7M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Resume
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <p>Your Name &mdash; QA Engineer Portfolio</p>
+    </div>
+  </footer>
+
+  <script>
+    function filterCards(type, btn) {
+      document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.display = (type === 'all' || card.dataset.type === type) ? 'flex' : 'none';
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
